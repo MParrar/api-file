@@ -64,7 +64,7 @@ app.get('/api/logout', (req, res) => {
   res.clearCookie('refresh_token');
   res.clearCookie('connect.sid');
   res.oidc.logout({
-    returnTo: `http://${SUBDOMAIN ? `${SUBDOMAIN}.` : ''}${
+    returnTo: `https://${SUBDOMAIN ? `${SUBDOMAIN}.` : ''}${
       process.env.FRONTEND_DOMAIN
     }/landing-page`,
   });
