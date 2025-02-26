@@ -8,6 +8,8 @@ const {
 const axios = require('axios');
 dotenv.config();
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const auth0Config = {
   authRequired: false,
   auth0Logout: true,
@@ -18,8 +20,8 @@ const auth0Config = {
   secret: process.env.AUTH0_RWA_SECRET,
   session: {
     cookie: {
-      secure: false,
-      sameSite: 'Lax',
+      secure: isProduction,
+      sameSite: isProduction ? 'None' : 'Lax',
     },
   },
   authorizationParams: {
@@ -30,14 +32,14 @@ const auth0Config = {
   afterCallback: (req, res, session) => {
     res.cookie('access_token', session.access_token, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'Lax',
+      secure: isProduction,
+      sameSite: isProduction ? 'None' : 'Lax',
       maxAge: 60 * 60 * 1000,
     });
     res.cookie('refresh_token', session.refresh_token, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'Lax',
+      secure: isProduction,
+      sameSite: isProduction ? 'None' : 'Lax',
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 
