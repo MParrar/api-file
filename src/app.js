@@ -10,8 +10,7 @@ const { auth } = require('express-openid-connect');
 const cookieParser = require('cookie-parser');
 const { auth0Config } = require('./middlewares/authMiddleware');
 const expressWs = require('express-ws');
-const { uploads } = require('../uploads');
-uploads();
+
 let SUBDOMAIN = '';
 dotenv.config();
 const app = express();
