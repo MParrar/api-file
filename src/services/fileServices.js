@@ -76,7 +76,7 @@ const cleanAndGenerateNewFile = async (res, filePath, websocket) => {
   let offerId = 1;
   const outputFilePath = path.join(
     __dirname,
-    '../../test',
+    '/tmp',
     'processed_output.csv'
   );
 
@@ -341,7 +341,7 @@ const processExcelFile = async (filePath, res, websocket) => {
 
     const outputFilePath = path.join(
       __dirname,
-      '../../test',
+      '/tmp',
       'processed_output.xlsx'
     );
     XLSX.writeFile(newWorkbook, outputFilePath);

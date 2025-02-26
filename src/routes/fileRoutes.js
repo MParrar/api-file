@@ -6,11 +6,12 @@ const {
   uploadDocument,
 } = require('../controllers/fileController');
 const router = express.Router();
+
 const upload = multer({
   storage: multer.diskStorage({
       destination: (req, file, cb) => {
-          cb(null, 'test/');
-      },
+        cb(null, '/tmp/');
+    },
       filename: (req, file, cb) => {
           cb(null, file.originalname);
       }
