@@ -19,7 +19,7 @@ const auth0Config = {
   session: {
     cookie: {
       secure: false,
-      sameSite: 'Lax',
+      sameSite: 'None',
     },
   },
   authorizationParams: {
@@ -31,13 +31,13 @@ const auth0Config = {
     res.cookie('access_token', session.access_token, {
       httpOnly: true,
       secure: false,
-      sameSite: 'Lax',
+      sameSite: 'None',
       maxAge: 60 * 60 * 1000,
     });
     res.cookie('refresh_token', session.refresh_token, {
       httpOnly: true,
       secure: false,
-      sameSite: 'Lax',
+      sameSite: 'None',
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 
