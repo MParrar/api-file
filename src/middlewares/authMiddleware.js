@@ -18,7 +18,7 @@ const auth0Config = {
   secret: process.env.AUTH0_RWA_SECRET,
   session: {
     cookie: {
-      secure: process.env.NODE_ENV === 'production',
+      secure: false,
       sameSite: 'Lax',
     },
   },
@@ -30,13 +30,13 @@ const auth0Config = {
   afterCallback: (req, res, session) => {
     res.cookie('access_token', session.access_token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: false,
       sameSite: 'Lax',
       maxAge: 60 * 60 * 1000,
     });
     res.cookie('refresh_token', session.refresh_token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: false,
       sameSite: 'Lax',
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
