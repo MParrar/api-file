@@ -6,10 +6,10 @@ const uploadDocument = async (req, res) => {
     return res.status(400).json({ message: 'Please upload a file' });
   }
 
-  const filePath = path.join('/tmp', req.file.filename);
-  const WebSocket = req.app.get('ws');
-  const fileExtension = path.extname(req.file.originalname);
   try {
+    const filePath = path.join('/tmp', req.file.filename);
+    const WebSocket = req.app.get('ws');
+    const fileExtension = path.extname(req.file.originalname);
     if(fileExtension === '.csv'){
       await validateFile(filePath);
       await cleanAndGenerateNewFile(res, filePath, WebSocket);
