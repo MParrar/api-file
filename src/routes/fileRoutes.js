@@ -8,14 +8,7 @@ const {
 const router = express.Router();
 
 const upload = multer({
-  storage: multer.diskStorage({
-      destination: (req, file, cb) => {
-        cb(null, '/tmp');
-    },
-      filename: (req, file, cb) => {
-          cb(null, file.originalname);
-      }
-  }),
+    storage: multer.memoryStorage(),
   fileFilter: (req, file, cb) => {
       const ext = path.extname(file.originalname).toLowerCase();
       if (['.xlsx', '.xls', '.csv'].includes(ext)) {
