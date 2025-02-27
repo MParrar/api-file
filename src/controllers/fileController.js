@@ -6,7 +6,7 @@ const uploadDocument = async (req, res) => {
     return res.status(400).json({ message: 'Please upload a file' });
   }
 
-  const filePath = path.join(__dirname, '../../uploads', req.file.filename);
+  const filePath = path.join('/tmp', req.file.filename);
   const WebSocket = req.app.get('ws');
   const fileExtension = path.extname(req.file.originalname);
   try {
