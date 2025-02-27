@@ -74,11 +74,8 @@ const cleanAndGenerateNewFile = async (res, filePath, websocket) => {
   const uniqueData = new Set();
 
   let offerId = 1;
-  const outputFilePath = path.join(
-    __dirname,
-    '/tmp',
-    'processed_output.csv'
-  );
+  const outputFilePath = path.join('/tmp', 'processed_output.csv');
+
 
   const totalLines = await new Promise((resolve, reject) => {
     let lineCount = 0;
