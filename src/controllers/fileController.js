@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const { validateFile, cleanAndGenerateNewFile, processExcelFile, validateXLSXFile } = require('../services/fileServices');
 
 const uploadDocument = async (req, res) => {
@@ -7,7 +8,9 @@ const uploadDocument = async (req, res) => {
   }
 
   try {
-    const filePath = path.join('/tmp', req.file.filename);
+    const filePath = path.join('/tmp', req.file.originalname);
+    fs.writeFileSync(filePath, req.file.buffer);
+
     const WebSocket = req.app.get('ws');
     const fileExtension = path.extname(req.file.originalname);
     if(fileExtension === '.csv'){
